@@ -8,29 +8,29 @@ const useFetch = (url) => {
     useEffect(() => {
         const abtController = new AbortController();
 
-        const fetchData = async () => {
-          try {
-            const response = await fetch(url);
-            if (!response.ok) {
-              throw new Error("Could not fetch the data");
-            }
-            const data = await response.json();
-            console.log("data movies"+data.data.movies);
-            setData(data.data.movies);
-            setIsLoading(false);
-            setError(null);
-          } catch (error) {
-            if (error.name === 'AbortError') {
-              console.log('Fetch aborted');
-            } else {
-              console.error("Error fetching blogs:", error);
+          const fetchData = async () => {
+            try {
+              const response = await fetch(url);
+              if (!response.ok) {
+                throw new Error("Could not fetch the data");
+              }
+              const data = await response.json();
+              setData(data.data.movies);
               setIsLoading(false);
-              setError(error.message);
+              setError(null);
+            } catch (error) {
+              if (error.name === 'AbortError') {
+                console.log('Fetch aborted');
+              } else {
+                console.error("Error fetching blogs:", error);
+                setIsLoading(false);
+                setError(error.message);
+              }
             }
-          }
-        };
-        fetchData();
+          };
+          fetchData();
 
+        
         return () => {
             abtController.abort();
         };
