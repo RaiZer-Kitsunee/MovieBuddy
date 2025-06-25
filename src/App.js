@@ -17,7 +17,7 @@ function App() {
         <Route path="/" Component={MainContent} />
         <Route path="/upcoming" Component={Upcoming} />
         <Route path="/bookmarks" Component={BookMarks} />
-        <Route path="/movie/:id" element={MovieDetail} />
+        <Route path="/movie/:id" element={<MovieDetail/>} />
       </Routes>
       </div>
     </div>
