@@ -37,8 +37,20 @@ const MovieDetail = () => {
       {movie && (
         <div className="home">
           <div className="movie-details">
+            <img
+              className="overlay-bg"
+              src={movie.background_image}
+              alt="background_image"
+            />
             <div className="left-side">
-              <img src={movie.large_cover_image} alt="poster" />
+              <img
+                src={movie.large_cover_image}
+                alt={movie.title}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = "Placeholder.png";
+                }}
+              />
               <button>
                 <a href={url} target="_blank" rel="noreferrer">
                   Download
@@ -46,7 +58,7 @@ const MovieDetail = () => {
               </button>
             </div>
             <div className="right-side">
-              <h2>{movie.title}</h2>
+              <h2>{movie.title !== "" ? movie.title : "Unknown"}</h2>
 
               <div className="holder">
                 <p>Genres:</p>

@@ -4,7 +4,14 @@ import { Link } from "react-router-dom";
 const TrendingCard = ({ movies }) => {
   return (
     <Link to={`/movie/${movies.id}`} className="trending-card" key={movies.id}>
-      <img src={movies.background_image_original} alt={movies.title} />
+      <img
+        src={movies.background_image_original}
+        alt={movies.title}
+        onError={(e) => {
+          e.target.onerror = null;
+          e.target.src = "Placeholder.png";
+        }}
+      />
       <div className="trending-card-info">
         <div className="trending-card-tile">
           <p>{movies.year} </p>
